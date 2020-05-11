@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class MedlemsMapper {
 
     //Tilføj medlem
-    public void lavNytMedlem(Medlem medlem) {
+    public static void lavNytMedlem(Medlem medlem) {
         String sqlQuery = "";
         Connection connection = DBConnector.getInstance().getConnection();
         try {
