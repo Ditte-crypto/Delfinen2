@@ -26,4 +26,24 @@ public class Medlem {
         this.betalt = betalt;
         this.aktiv = aktiv;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNavn() {
+        return navn;
+    }
+
+    public int getAargang() {
+        return aargang;
+    }
+
+    public Boolean getBetalt() {
+        return betalt;
+    }
+
+    public Boolean getAktiv() {
+        return aktiv;
+    }
 }
