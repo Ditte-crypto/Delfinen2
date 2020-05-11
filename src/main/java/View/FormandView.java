@@ -8,7 +8,7 @@ public class FormandView {
     /*
     Her er formandens interaktion med programmet
      */
-    public int lavNytMedlem(){
+    public int formandsMenuOversigt(){
         int retInt = 0;
         Scanner in = new Scanner(System.in);
         System.out.println("Velkommen formand!"+

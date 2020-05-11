@@ -19,11 +19,35 @@ public class Medlem {
     Boolean betalt;
     Boolean aktiv;
 
+    public Medlem(){
+
+    }
+
     public Medlem(int id, String navn, int aargang, Boolean betalt, Boolean aktiv) {
         this.id = id;
         this.navn = navn;
         this.aargang = aargang;
         this.betalt = betalt;
+        this.aktiv = aktiv;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNavn(String navn) {
+        this.navn = navn;
+    }
+
+    public void setAargang(int aargang) {
+        this.aargang = aargang;
+    }
+
+    public void setBetalt(Boolean betalt) {
+        this.betalt = betalt;
+    }
+
+    public void setAktiv(Boolean aktiv) {
         this.aktiv = aktiv;
     }
 
