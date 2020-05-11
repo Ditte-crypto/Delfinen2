@@ -17,7 +17,7 @@ public class MedlemsMapper {
         Connection connection = DBConnector.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
-            sqlQuery = "insert into delfin(Navn,Aargang,Betalt,Aktiv) values ('"
+            sqlQuery = "insert into medlemmer(Navn,Aargang,Betalt,Aktiv) values ('"
                     + medlem.getNavn() + "','"
                     + medlem.getAargang() + "',"
                     + medlem.getBetalt() + ");"
@@ -60,5 +60,19 @@ public class MedlemsMapper {
         }
 
         return medlemmer;
+    }
+
+    public void deleteMedlem(Medlem medlem){
+        String sqlQuery = "";
+        Connection connection = DBConnector.getInstance().getConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            sqlQuery ="DELETE FROM medlemmer WHERE MedlemsID = " + medlem.getId();
+            statement.executeUpdate(sqlQuery);
+        } catch (SQLException e) {
+            System.out.println("Fejl: " + e.getMessage());
+        }
+
     }
 }
