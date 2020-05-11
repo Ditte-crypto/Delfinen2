@@ -1,0 +1,62 @@
+@startuml
+Class Controller.MainController{
+View.mainView : mainView
+runProgramme()
+}
+
+abstract Class View.mainView{
+
+login()
+}
+Class View.formandView{
+formandsMenu():List
+visAlleMedlemmer(Arraylist<Medlem>)
+}
+Class Model.Formand{
+MedlemsBog medlemsbog
+List list
+medlemsbog.lavNytMedlem(list)
+medlemsBog.sletMedlem(list)
+}
+Class Model.Medlem{
+Medlem()
+}
+Abstract Class Model.Bog{
+initializeBogFromDB()
+
+}
+Class Model.MedlemsBog{
+initializeBogFromDB()
+MedlemsMapper mm
+bog.mm.lavNytMedlem(medlem)
+ArrayList<Medlem> = bog.mm.getAllMedlemmer()
+bog.mm.deleteMedlem()
+}
+Class Mapper.MedlemsMapper{
+lavNytMedlem(Medlem medlem)
+getAllMedlemmer() : Arraylist<medlem>
+deleteMedlem(medlem)
+}
+Class DBConnector{
+}
+Class View.kasserview{
+kassermenu()
+seMedlemmerIRestance()
+registrerBetaling():boolean betalt/ikkebetalt
+}
+Class Model.RestanceBog{
+lavRestanceListe(arrayList<Medlem>)
+}
+View.mainView-->View.kasserview
+Controller.MainController-->View.mainView
+View.mainView --> View.formandView
+View.formandView-->Controller.MainController
+Controller.MainController-->Model.Formand
+Model.Formand<--Model.Medlem
+Model.Bog-->Mapper.MedlemsMapper
+Controller.MainController--Model.MedlemsBog
+Model.MedlemsBog-->Mapper.MedlemsMapper
+Mapper.MedlemsMapper-->DBConnector
+Model.MedlemsBog-->Controller.MainController
+
+@enduml
