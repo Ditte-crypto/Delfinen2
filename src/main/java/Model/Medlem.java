@@ -30,6 +30,12 @@ public class Medlem {
         this.betalt = betalt;
         this.aktiv = aktiv;
     }
+    public Medlem(String navn, int aargang, Boolean betalt, Boolean aktiv) {
+        this.navn = navn;
+        this.aargang = aargang;
+        this.betalt = betalt;
+        this.aktiv = aktiv;
+    }
 
     public void setId(int id) {
         this.id = id;
