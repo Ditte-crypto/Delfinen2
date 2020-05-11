@@ -50,6 +50,7 @@ public class MedlemsMapper {
                 retMedlem.setNavn(Navn);
                 retMedlem.setAargang(Aargang);
                 retMedlem.setBetalt(Betalt);
+                retMedlem.setAktiv(Aktiv);
                 medlemmer.add(retMedlem);
                 //Printer resultaterne
                 //System.out.format("%s, %s, %s, %s, %s", Id, );
