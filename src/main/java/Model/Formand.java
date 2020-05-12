@@ -1,5 +1,7 @@
 package Model;
 
+import Mapper.MedlemsMapper;
+
 import java.util.ArrayList;
 
 public class Formand {
@@ -12,4 +14,5 @@ public class Formand {
         Medlem medlem = new Medlem(navn, aargang, betalt, aktiv);
         medlemsBog.tilfoejMedlemTilBog(medlem);
     }
+
 }

@@ -1,5 +1,11 @@
 package View;
 
+import Mapper.MedlemsMapper;
+import Model.Formand;
+import Model.Medlem;
+import Model.MedlemsBog;
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,18 +19,17 @@ public class FormandView {
         Scanner in = new Scanner(System.in);
         System.out.println("Velkommen formand!"+
                 "[1] : for at tilføje medlem"+
+                "[2] : vis alle medlemmer"+
+                "[3] : slet et medlem"+
                 "[99] : forlad programmet");
         retInt = in.nextInt();
         return retInt;
     }
-    public ArrayList<Object> formandsMain(int brugerInput){
-        ArrayList<Object> retList = new ArrayList<Object>();
-        switch(brugerInput) {
-            case 1 : retList = inputMedlemsData();
-                    break;
-        }
-        return retList;
+    public int formandsMenu(ArrayList<Object> retList){
+        int formandsMenuValg = (int) retList.get(0);
+        return formandsMenuValg;
     }
+
     public ArrayList<Object> inputMedlemsData(){
         ArrayList<Object> retList = new ArrayList<Object>();
         Scanner in = new Scanner(System.in);
@@ -45,7 +50,23 @@ public class FormandView {
         System.out.println("Er medlemmet aktivt? true/false");
         Boolean aktiv = in.nextBoolean();
         retList.add(aktiv);
+        System.out.println("Du har tilføjet et nyt medlem.");
 
         return retList;
+    }
+
+
+    public void visAlleMedlemmer(MedlemsBog medlemsBog){
+        ArrayList<Medlem> medlemmer = medlemsBog.getMedlemmer();
+        for(Medlem m : medlemmer){
+            System.out.println(m);
+        }
+    }
+    public int sletMedlemDialog(MedlemsBog medlemsBog){
+        Scanner in = new Scanner(System.in);
+        visAlleMedlemmer(medlemsBog);
+        System.out.println("Skriv id på medlemmet du vil udmelde: ");
+        int retInt = in.nextInt();
+        return retInt;
     }
 }

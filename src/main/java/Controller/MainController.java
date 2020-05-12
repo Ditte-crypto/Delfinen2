@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Formand;
+import Model.MedlemNotFoundException;
 import Model.MedlemsBog;
 import Model.User;
 import View.FormandView;
@@ -18,12 +19,28 @@ public class MainController {
             case "formand":
                 Formand formand = new Formand();
                 FormandView formandView = new FormandView();
-                while(menuValg!=99) {
-                    menuValg = formandView.formandsMenu();
-                    ArrayList<Object> medlemsData = formandView.formandsMain(menuValg);
-                    formand.lavNytMedlem(medlemsData, medlemsBog);
-                }
-                break;
+                menuValg = formandView.formandsMenu();
+                MainView mainView = new MainView();
+
+                    switch (menuValg) {
+                        case 1 :
+                        ArrayList<Object> medlemsData = formandView.inputMedlemsData();
+                        formand.lavNytMedlem(medlemsData, medlemsBog);
+                        break;
+                        case 2 : formandView.visAlleMedlemmer(medlemsBog);
+                        formandView.formandsMenu();
+                        break;
+                        case 3 : int sletMedlemsNummer = formandView.sletMedlemDialog(medlemsBog);
+                            try {
+                                medlemsBog.sletMedlemFraBog(sletMedlemsNummer);
+                                formandView.formandsMenu();
+                            } catch (MedlemNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        case 99 : mainView.getInfo();
+                    }
+                    break;
             case "kasser" :
                 break;
             case "traener":

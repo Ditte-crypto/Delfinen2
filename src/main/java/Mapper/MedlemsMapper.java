@@ -12,17 +12,21 @@ import java.util.ArrayList;
 public class MedlemsMapper {
 
     //Tilføj medlem
-    public static void lavNytMedlem(Medlem medlem) {
+    public void lavNytMedlem(Medlem medlem) {
         String sqlQuery = "";
         Connection connection = DBConnector.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
+
             sqlQuery = "insert into medlemmer(Navn,Aargang,Betalt,Aktiv) values ('"
-                    + medlem.getNavn() + "','"
-                    + medlem.getAargang() + "',"
-                    + medlem.getBetalt() + ");"
+                    + medlem.getNavn() + "',"
+                    + medlem.getAargang() + ","
+                    + medlem.getBetalt() + ","
                     + medlem.getAktiv() + ");";
-            statement.executeUpdate(sqlQuery);
+            statement.executeUpdate(sqlQuery,Statement.RETURN_GENERATED_KEYS);
+            ResultSet resultSet = statement.getGeneratedKeys();
+            resultSet.next();
+            int medlemsID = resultSet.getInt(1);
         } catch (SQLException e) {
             System.out.println("Fejl: " + e.getMessage());
         }
@@ -62,13 +66,14 @@ public class MedlemsMapper {
         return medlemmer;
     }
 
-    public void deleteMedlem(Medlem medlem){
+    public void deleteMedlem(int id){
         String sqlQuery = "";
         Connection connection = DBConnector.getInstance().getConnection();
 
         try {
             Statement statement = connection.createStatement();
-            sqlQuery ="DELETE FROM medlemmer WHERE MedlemsID = " + medlem.getId();
+            sqlQuery = "update medlemmer set Deleted = 1 where MedlemsID = "+id;
+
             statement.executeUpdate(sqlQuery);
         } catch (SQLException e) {
             System.out.println("Fejl: " + e.getMessage());
