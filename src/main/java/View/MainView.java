@@ -1,6 +1,9 @@
 package View;
 
+import Model.User;
+
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /*
     Her er loginsiden
@@ -10,41 +13,38 @@ import java.util.ArrayList;
 //2. Kassérmenu() | seMedlemmerIRestance()  | registrerBetaling():boolean betalt/ikkebetalt
 //3. træner TBD
 public class MainView {
-     String[] brugere = new String[]{bruger1, bruger2, bruger3};
-        /*[
-    {
-        username: " Formand",
-        password : "1234 "
-    },
-    {
-        username: "Kassér",
-        password: "4444"
-    },
-    {
-        username: "træner",
-        password: "5555"
-    }
-]
-/*
-         */
-    String[] bruger1 = new String[]{"Traener", "5555"};
-    String[] bruger2 = new String[]{"Kasser", "4444"};
-    String[] bruger3 = new String[]{"Formand", "1234"};
 
-    public void getInfo(String[] bruger) {
-        String username = bruger[0];
-        String password = bruger[1];
-        var username = document.getElementById('username').value
-        var password = document.getElementById('password').value
 
-        for(var i = 0; i < objPeople.length; i++) {
-            // check is user input matches username and password of a current index of the objPeople array
-            if(username == objPeople[i].username && password == objPeople[i].password) {
-                console.log(username + " is logged in!!!")
-                // stop the function if this is found to be true
-                return
+    public User getInfo() {
+        ArrayList<User> users = new ArrayList<>();
+
+        User bruger1 = new User("Traener", "5555", "træner");
+        User bruger2 = new User("Kasser", "4444", "kasser");
+        User bruger3 = new User("Formand", "1234", "formand");
+        users.add(bruger1);
+        users.add(bruger2);
+        users.add(bruger3);
+
+        String username = "";
+        String password = "";
+        Boolean login = false;
+        Scanner sc = new Scanner(System.in);
+        User loggedInUser = null;
+        while (!login) {
+            System.out.println("Brugernavn: ");
+            username = sc.nextLine();
+            System.out.println("Kodeord: ");
+            password = sc.nextLine();
+            for (User u : users) {
+                if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
+                    System.out.println("du er logget ind");
+                    loggedInUser = u;
+                    login = true;
+                    return loggedInUser;
+                }
             }
+            System.out.println("Forkert brugernavn eller kodeord.");
         }
-        console.log("incorrect username or password")
+        return loggedInUser;
     }
 }
