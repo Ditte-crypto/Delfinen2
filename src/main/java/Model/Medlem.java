@@ -37,6 +37,15 @@ public class Medlem {
         this.aktiv = aktiv;
     }
 
+    @Override
+    public String toString() {
+        return  "\nMedlemsID: " + id +
+                "\nNavn: " + navn +
+                "\nAargang: " + aargang +
+                "\nBetalt: " + betalt +
+                "\nAktiv: " + aktiv;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

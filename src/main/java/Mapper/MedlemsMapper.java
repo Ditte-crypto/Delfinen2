@@ -36,7 +36,7 @@ public class MedlemsMapper {
         Connection connection = DBConnector.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
-            sqlQuery ="select * from delfin";
+            sqlQuery ="select * from medlemmer";
             ResultSet resultSet = statement.executeQuery(sqlQuery);
             //bearbejdning af resultset:
             while(resultSet.next()) {
