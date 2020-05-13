@@ -8,3 +8,15 @@ Betalt boolean,
 Aktiv boolean,
 primary key(MedlemsID)
 )engine=InnoDB default charset=utf8;
+
+
+create table Svoemmedisciplin (
+MedlemsID int not null,
+Navn varchar(255) not null,
+Aargang int not null,
+Staevne varchar (255) default null,
+tid int not null,
+Disciplin varchar (255) default null,
+primary key (MedlemsID),
+foreign key (MedlemsID) references medlemmer(MedlemsID)
+)engine=InnoDB default charset=utf8;
