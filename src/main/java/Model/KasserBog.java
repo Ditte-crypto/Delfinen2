@@ -1,5 +1,7 @@
 package Model;
 
+import Mapper.RestanceMapper;
+
 import java.util.ArrayList;
 
 public class KasserBog {
@@ -7,7 +9,7 @@ public class KasserBog {
     String navn;
     Boolean harbetalt;
     ArrayList<Object> medlemmerIRestance;
-    KasserMapper km;
+    RestanceMapper rm;
 
     public KasserBog(ArrayList<Object> medlemmerIRestance) {
         /*
@@ -16,18 +18,18 @@ public class KasserBog {
         medlemmer = mm.getAllMedlemmer();
          */
         medlemmerIRestance = new ArrayList<>();
-        km = new KasserMapper();
-        medlemmerIRestance = km.getAllRestancer();
+        rm = new RestanceMapper();
+        medlemmerIRestance = rm.getAllRestancer();
     }
 
-    public ArrayList<Object> getMedlemmerIRestance() {
+    public ArrayList<Object> getMedlemmer() {
         return medlemmerIRestance;
     }
     public void tilfoejMedlemTilBog(Medlem medlem) {
         //tilføjer medlemsobject til medlemsliste
 
         medlemmerIRestance.add(medlem);
-        km.lavNytMedlem(medlem);
+        rm.lavNytMedlem(medlem);
         //lav medlem i databasen
     }
     public void sletMedlemFraBog(int medlemsNr) throws MedlemNotFoundException{
@@ -36,11 +38,11 @@ public class KasserBog {
             throw new MedlemNotFoundException();
         }
         medlemmerIRestance.remove(medlem);
-        km.deleteMedlem(medlemsNr);
+        rm.deleteMedlem(medlemsNr);
     }
     public Medlem getMedlemById(int id){
         Medlem retMedlem = null;
-        for (Medlem m: medlemmer){
+        for (Medlem m: medlemmerIRestance){
             if(id == m.getId()){
                 retMedlem = m;
             }
