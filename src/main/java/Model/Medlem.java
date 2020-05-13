@@ -12,6 +12,11 @@ primary key(MedlemsID)
 )engine=InnoDB default charset=utf8;
  */
 
+import java.time.LocalDate;
+import Util.Globals;
+
+import javax.swing.*;
+
 public class Medlem {
     int id;
     String navn;
@@ -84,5 +89,22 @@ public class Medlem {
 
     public Boolean getAktiv() {
         return aktiv;
+    }
+
+    public int calcFee() {
+        int now = LocalDate.now().getYear();
+        int age = now - aargang;
+        int payMent = Globals.seniorRate;
+        if (!aktiv) {
+            payMent = Globals.passiveRate;
+            return payMent;
+        } else {
+            if (age < 18) {
+                payMent = Globals.juniorRate;
+            } else if (age > 60 ) {
+                payMent = (int) (payMent - (payMent* (Globals.pensioneerRatePercentage)/100.0));
+            }
+        }
+        return payMent;
     }
 }

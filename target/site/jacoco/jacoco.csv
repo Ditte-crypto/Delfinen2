@@ -1,0 +1,16 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+MyProject,default,Main,10,0,0,0,4,0,2,0,2,0
+MyProject,Mapper,MedlemsMapper,132,13,2,0,46,5,2,3,1,3
+MyProject,Model,Formand,92,0,6,0,27,0,7,0,3,0
+MyProject,Model,Medlem,80,15,0,0,29,6,14,1,14,1
+MyProject,Model,User,44,0,0,0,16,0,7,0,7,0
+MyProject,Model,MedlemsBog,73,0,6,0,21,0,8,0,5,0
+MyProject,Model,Bog,3,0,0,0,1,0,1,0,1,0
+MyProject,Model,MedlemNotFoundException,4,0,0,0,2,0,1,0,1,0
+MyProject,Model,Trainer,7,0,0,0,3,0,2,0,2,0
+MyProject,Model,Cashier,24,0,5,0,10,0,5,0,2,0
+MyProject,Util,DBConnector,7,35,0,2,2,14,0,4,0,3
+MyProject,Controller,MainController,19,0,0,0,7,0,2,0,2,0
+MyProject,View,MainView,106,0,8,0,27,0,6,0,2,0
+MyProject,View,FormandView,117,0,2,0,34,0,7,0,6,0
+MyProject,View,CashierView,3,0,0,0,1,0,1,0,1,0

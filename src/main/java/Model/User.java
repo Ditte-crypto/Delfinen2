@@ -1,18 +1,21 @@
 package Model;
 
-public class User {
-    String username;
-    String password;
-    String role;
+import java.util.Scanner;
+
+public abstract class User {
+    protected String username;
+    protected String password;
+    protected String role;
+    protected Scanner sc;
+    protected MedlemsBog medlemsBog = new MedlemsBog();
 
     public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.sc = new Scanner(System.in);
     }
-    public void showMenu(){
-
-    }
+    public abstract void showMenu();
 
     public String getUsername() {
         return username;

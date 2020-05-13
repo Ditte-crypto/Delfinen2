@@ -1,0 +1,15 @@
+Model/Trainer.class
+View/CashierView.class
+Controller/MainController.class
+Util/DBConnector.class
+Model/Bog.class
+Model/MedlemsBog.class
+Main.class
+Mapper/MedlemsMapper.class
+Model/Medlem.class
+Model/Cashier.class
+Model/MedlemNotFoundException.class
+View/MainView.class
+View/FormandView.class
+Model/User.class
+Model/Formand.class

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="da"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MedlemsMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MyProject</a> &gt; <a href="index.source.html" class="el_package">Mapper</a> &gt; <span class="el_source">MedlemsMapper.java</span></div><h1>MedlemsMapper.java</h1><pre class="source lang-java linenums">package Mapper;
+
+import Model.Medlem;
+import Util.DBConnector;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+<span class="fc" id="L12">public class MedlemsMapper {</span>
+
+    //Tilføj medlem
+    public void lavNytMedlem(Medlem medlem) {
+<span class="fc" id="L16">        String sqlQuery = &quot;&quot;;</span>
+<span class="fc" id="L17">        Connection connection = DBConnector.getInstance().getConnection();</span>
+        try {
+<span class="nc" id="L19">            Statement statement = connection.createStatement();</span>
+
+<span class="nc" id="L21">            sqlQuery = &quot;insert into medlemmer(Navn,Aargang,Betalt,Aktiv) values ('&quot;</span>
+<span class="nc" id="L22">                    + medlem.getNavn() + &quot;',&quot;</span>
+<span class="nc" id="L23">                    + medlem.getAargang() + &quot;,&quot;</span>
+<span class="nc" id="L24">                    + medlem.getBetalt() + &quot;,&quot;</span>
+<span class="nc" id="L25">                    + medlem.getAktiv() + &quot;);&quot;;</span>
+<span class="nc" id="L26">            statement.executeUpdate(sqlQuery,Statement.RETURN_GENERATED_KEYS);</span>
+<span class="nc" id="L27">            ResultSet resultSet = statement.getGeneratedKeys();</span>
+<span class="nc" id="L28">            resultSet.next();</span>
+<span class="nc" id="L29">            int medlemsID = resultSet.getInt(1);</span>
+<span class="nc" id="L30">        } catch (SQLException e) {</span>
+<span class="nc" id="L31">            System.out.println(&quot;Fejl: &quot; + e.getMessage());</span>
+<span class="nc" id="L32">        }</span>
+<span class="nc" id="L33">    }</span>
+
+
+    public ArrayList&lt;Medlem&gt; getAllMedlemmer(){
+<span class="nc" id="L37">        ArrayList&lt;Medlem&gt; medlemmer = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L38">        Medlem retMedlem = null;</span>
+<span class="nc" id="L39">        String sqlQuery = &quot;&quot;;</span>
+<span class="nc" id="L40">        Connection connection = DBConnector.getInstance().getConnection();</span>
+        try {
+<span class="nc" id="L42">            Statement statement = connection.createStatement();</span>
+<span class="nc" id="L43">            sqlQuery =&quot;select * from medlemmer&quot;;</span>
+<span class="nc" id="L44">            ResultSet resultSet = statement.executeQuery(sqlQuery);</span>
+            //bearbejdning af resultset:
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            while(resultSet.next()) {</span>
+<span class="nc" id="L47">                int Id = resultSet.getInt(&quot;MedlemsID&quot;);</span>
+<span class="nc" id="L48">                String Navn = resultSet.getString(&quot;Navn&quot;);</span>
+<span class="nc" id="L49">                int Aargang = resultSet.getInt(&quot;Aargang&quot;);</span>
+<span class="nc" id="L50">                Boolean Betalt = resultSet.getBoolean(&quot;Betalt&quot;);</span>
+<span class="nc" id="L51">                Boolean Aktiv = resultSet.getBoolean(&quot;Aktiv&quot;);</span>
+<span class="nc" id="L52">                retMedlem = new Medlem();</span>
+<span class="nc" id="L53">                retMedlem.setId(Id);</span>
+<span class="nc" id="L54">                retMedlem.setNavn(Navn);</span>
+<span class="nc" id="L55">                retMedlem.setAargang(Aargang);</span>
+<span class="nc" id="L56">                retMedlem.setBetalt(Betalt);</span>
+<span class="nc" id="L57">                retMedlem.setAktiv(Aktiv);</span>
+<span class="nc" id="L58">                medlemmer.add(retMedlem);</span>
+                //Printer resultaterne
+                //System.out.format(&quot;%s, %s, %s, %s, %s&quot;, Id, );
+<span class="nc" id="L61">            }</span>
+<span class="nc" id="L62">        } catch (SQLException e) {</span>
+<span class="nc" id="L63">            System.out.println(&quot;Fejl: &quot; + e.getMessage());</span>
+<span class="nc" id="L64">        }</span>
+
+<span class="nc" id="L66">        return medlemmer;</span>
+    }
+
+    public void deleteMedlem(int id){
+<span class="fc" id="L70">        String sqlQuery = &quot;&quot;;</span>
+<span class="fc" id="L71">        Connection connection = DBConnector.getInstance().getConnection();</span>
+
+        try {
+<span class="nc" id="L74">            Statement statement = connection.createStatement();</span>
+<span class="nc" id="L75">            sqlQuery = &quot;update medlemmer set Deleted = 1 where MedlemsID = &quot;+id;</span>
+
+<span class="nc" id="L77">            statement.executeUpdate(sqlQuery);</span>
+<span class="nc" id="L78">        } catch (SQLException e) {</span>
+<span class="nc" id="L79">            System.out.println(&quot;Fejl: &quot; + e.getMessage());</span>
+<span class="nc" id="L80">        }</span>
+
+<span class="nc" id="L82">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
