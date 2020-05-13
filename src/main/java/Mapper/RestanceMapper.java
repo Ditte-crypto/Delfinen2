@@ -40,7 +40,7 @@ public class RestanceMapper {
         return restance;
     }
 
-    public void tilfoejTilRestance(int id){
+    public void tilfoejMedlemByIdTilRestanceListe(int id){
         String sqlQuery = "";
         Connection connection = DBConnector.getInstance().getConnection();
 

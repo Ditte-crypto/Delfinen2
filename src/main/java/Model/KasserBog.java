@@ -8,10 +8,10 @@ public class KasserBog {
     int id;
     String navn;
     Boolean harbetalt;
-    ArrayList<Object> medlemmerIRestance;
+    ArrayList<Medlem> medlemmerIRestance;
     RestanceMapper rm;
 
-    public KasserBog(ArrayList<Object> medlemmerIRestance) {
+    public KasserBog() {
         /*
         medlemmer = new ArrayList<Medlem>();
         mm  = new MedlemsMapper();
@@ -22,23 +22,23 @@ public class KasserBog {
         medlemmerIRestance = rm.getAllRestancer();
     }
 
-    public ArrayList<Object> getMedlemmer() {
+    public ArrayList<Medlem> getMedlemmer() {
         return medlemmerIRestance;
     }
-    public void tilfoejMedlemTilBog(Medlem medlem) {
+    public void tilfoejMedlemTilBog(int medlemsId) {
         //tilføjer medlemsobject til medlemsliste
-
+        Medlem medlem = getMedlemById(medlemsId);
         medlemmerIRestance.add(medlem);
-        rm.lavNytMedlem(medlem);
+        rm.tilfoejMedlemByIdTilRestanceListe(medlemsId);
         //lav medlem i databasen
     }
-    public void sletMedlemFraBog(int medlemsNr) throws MedlemNotFoundException{
-        Medlem medlem = getMedlemById(medlemsNr);
+    public void sletMedlemFraBog(int medlemsId) throws MedlemNotFoundException{
+        Medlem medlem = getMedlemById(medlemsId);
         if (medlem == null){
             throw new MedlemNotFoundException();
         }
         medlemmerIRestance.remove(medlem);
-        rm.deleteMedlem(medlemsNr);
+        rm.medlemHarBetalt(medlemsId);
     }
     public Medlem getMedlemById(int id){
         Medlem retMedlem = null;

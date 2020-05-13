@@ -17,9 +17,9 @@ public class MedlemsBog extends Bog {
         return medlemmer;
     }
 
-    public void tilfoejMedlemTilBog(Medlem medlem) {
+    public void tilfoejMedlemTilBog(int id) {
         //tilføjer medlemsobject til medlemsliste
-
+        Medlem medlem = getMedlemById(id);
         medlemmer.add(medlem);
         mm.lavNytMedlem(medlem);
         //lav medlem i databasen
