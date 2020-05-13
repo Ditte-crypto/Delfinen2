@@ -21,7 +21,9 @@ public class TraenerView {
         retInt = in.nextInt();
         return retInt;
     }
-
+    public int lavNyKonkurrencesvoemmer(){
+        //viser alle medlemmer og lader træner vælge 1 ud fra id, som returneres til maincontroller
+    }
     public void visBedsteSvoemmeTider(Medlem medlem, ResultatBog resultatBog){
         //top 5 bedste sømmere fordelt på de 4 discipliner efter både junior og senior
         /*
