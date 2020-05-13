@@ -47,6 +47,14 @@ registrerBetaling():boolean betalt/ikkebetalt
 Class Model.RestanceBog{
 lavRestanceListe(arrayList<Medlem>)
 }
+Class Model.Traener{
+visDeBesteSvømmetider()
+erMedlemJuniorEllerSenior()
+tilføjMedlemTilKonkurrencehold()
+}
+Class Bog.Konkurrencesvømmerbog{
+
+}
 View.mainView-->View.kasserview
 Controller.MainController-->View.mainView
 View.mainView --> View.formandView
