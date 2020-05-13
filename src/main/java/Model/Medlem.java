@@ -18,7 +18,7 @@ public class Medlem {
     int aargang;
     Boolean betalt;
     Boolean aktiv;
-
+    Boolean erKonkurrenceSvm;
     public Medlem(){
 
     }
@@ -35,6 +35,13 @@ public class Medlem {
         this.aargang = aargang;
         this.betalt = betalt;
         this.aktiv = aktiv;
+    }
+    public Medlem(String navn, int aargang, Boolean betalt, Boolean aktiv, Boolean erKonkurrenceSvm) {
+        this.navn = navn;
+        this.aargang = aargang;
+        this.betalt = betalt;
+        this.aktiv = aktiv;
+        this.erKonkurrenceSvm=erKonkurrenceSvm;
     }
 
     @Override
