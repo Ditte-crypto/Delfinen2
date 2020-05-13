@@ -39,4 +39,34 @@ public class RestanceMapper {
 
         return restance;
     }
+
+    public void tilfoejTilRestance(int id){
+        String sqlQuery = "";
+        Connection connection = DBConnector.getInstance().getConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            sqlQuery = "update medlemmer set Betalt = 0 where MedlemsID = "+id;
+
+            statement.executeUpdate(sqlQuery);
+        } catch (SQLException e) {
+            System.out.println("Fejl: " + e.getMessage());
+        }
+
+    }
+
+    public void medlemHarBetalt(int id){
+        String sqlQuery = "";
+        Connection connection = DBConnector.getInstance().getConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            sqlQuery = "update medlemmer set Betalt = 1 where MedlemsID = "+id;
+
+            statement.executeUpdate(sqlQuery);
+        } catch (SQLException e) {
+            System.out.println("Fejl: " + e.getMessage());
+        }
+
+    }
 }
