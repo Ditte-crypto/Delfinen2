@@ -21,12 +21,14 @@ public class ResultatBog extends Bog{
 
     @Override
     public void tilfoejMedlemTilBog(int id) {
-
+    Medlem medlem = getMedlemById(id);
+    konkurrencesvoemmere.add(medlem);
     }
 
     @Override
     public void sletMedlemFraBog(int id) throws MedlemNotFoundException {
-
+        Medlem medlem = getMedlemById(id);
+        konkurrencesvoemmere.remove(medlem);
     }
 
     @Override
