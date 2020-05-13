@@ -1,14 +1,22 @@
 package Model;
 
+import Mapper.ResultatMapper;
+
 import java.util.ArrayList;
 
 public class ResultatBog extends Bog{
 
     ArrayList<Medlem> konkurrencesvoemmere;
+    ResultatMapper resultatMapper;
 
+    public ResultatBog(){
+        konkurrencesvoemmere = new ArrayList<Medlem>();
+        resultatMapper = new ResultatMapper();
+        konkurrencesvoemmere = resultatMapper.getAllKonkurrencesvoemmere();
+    }
     @Override
     public ArrayList<Medlem> getMedlemmer() {
-        return null;
+        return konkurrencesvoemmere;
     }
 
     @Override
@@ -23,7 +31,13 @@ public class ResultatBog extends Bog{
 
     @Override
     public Medlem getMedlemById(int id) {
-        return null;
+        Medlem retMedlem = null;
+        for (Medlem m: konkurrencesvoemmere){
+            if(id == m.getId()){
+                retMedlem = m;
+            }
+        }
+        return retMedlem;
     }
     /*
     får medlemmer fra databasen som er registreret som konkurrencesvømmere

@@ -1,10 +1,12 @@
 package Controller;
 
 import Mapper.RestanceMapper;
+import Mapper.ResultatMapper;
 import Model.*;
 import View.FormandView;
 import View.KasserView;
 import View.MainView;
+import View.TraenerView;
 
 import java.util.ArrayList;
 
@@ -76,6 +78,21 @@ public class MainController {
                 break;
             case 99:
                 mainView.getInfo();
+        }
+    }
+    public void traenerRun() {
+        TraenerView traenerView = new TraenerView();
+        ResultatMapper rm = new RestanceMapper();
+        ResultatBog rb = new ResultatBog();
+        switch (menuValg) {
+            case 1:
+                int id = traenerView.lavNyKonkurrencesvoemmer();
+                //tilføj til resultatbog
+                rb.tilfoejMedlemTilBog(id);
+                //tilføj til db
+                rm.tilfoejMedlemTilKonkurrencesvoemmer(id);
+                break;
+                traenerRun();
         }
     }
 }
