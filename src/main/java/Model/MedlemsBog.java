@@ -17,9 +17,14 @@ public class MedlemsBog extends Bog {
         return medlemmer;
     }
 
+    @Override
     public void tilfoejMedlemTilBog(int id) {
+
+    }
+
+    public void tilfoejMedlemTilBog(Medlem medlem) {
         //tilføjer medlemsobject til medlemsliste
-        Medlem medlem = getMedlemById(id);
+        //Medlem medlem = getMedlemById(id);
         medlemmer.add(medlem);
         mm.lavNytMedlem(medlem);
         //lav medlem i databasen

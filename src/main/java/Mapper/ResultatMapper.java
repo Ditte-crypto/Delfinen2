@@ -29,7 +29,7 @@ public class ResultatMapper {
 
     }
 
-    public ArrayList<Medlem> getAllKonkurrencesvoemmer(){
+    public ArrayList<Medlem> getAllKonkurrencesvoemmere(){
         ArrayList<Medlem> konkurrencesvoemmer = new ArrayList<>();
         Medlem retMedlem = null;
         String sqlQuery = "";

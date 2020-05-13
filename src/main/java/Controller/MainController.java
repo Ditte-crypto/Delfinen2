@@ -37,18 +37,22 @@ public class MainController {
         switch(menuValg){
             case 1 : //se medlemmer i restance
                 kasserView.visMedlemmerIRestance(kasserBog);
+                kasserRun(mainView, menuValg);
                 break;
             case 2 : //regsitrer betaling
                 int id1 = kasserView.idPaaMedlemDerHarBetalt(kasserBog);
                 restanceMapper.medlemHarBetalt(id1);
+                kasserRun(mainView, menuValg);
             case 3 : //registrer medlem til at være i restance
                 int id2 = kasserView.idPaaMedlemDerErIRestance(medlemsBog);
                 restanceMapper.tilfoejMedlemByIdTilRestanceListe(id2);
+                kasserRun(mainView, menuValg);
                 break;
             case 99 : mainView.getInfo();
                 break;
             default :
                 System.out.println("ugyldigt input");
+                kasserRun(mainView, menuValg);
                 break;
         }
         kasserRun(mainView, menuValg);
@@ -82,17 +86,17 @@ public class MainController {
     }
     public void traenerRun() {
         TraenerView traenerView = new TraenerView();
-        ResultatMapper rm = new RestanceMapper();
+        ResultatMapper rm = new ResultatMapper();
         ResultatBog rb = new ResultatBog();
+        int menuValg = traenerView.traenerMenu();
         switch (menuValg) {
             case 1:
                 int id = traenerView.lavNyKonkurrencesvoemmer();
-                //tilføj til resultatbog
-                rb.tilfoejMedlemTilBog(id);
-                //tilføj til db
-                rm.tilfoejMedlemTilKonkurrencesvoemmer(id);
+                //tilføj til resultatbog og db
+                rb.tilfoejMedlemTilBog(id, rm);
                 break;
-                traenerRun();
+            case 2: //viser svømmere på konkurrencehold
+                traenerView.visKonkurrencesvoemmere(rb);
         }
     }
 }

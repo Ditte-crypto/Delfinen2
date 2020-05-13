@@ -21,8 +21,13 @@ public class ResultatBog extends Bog{
 
     @Override
     public void tilfoejMedlemTilBog(int id) {
+
+    }
+
+    public void tilfoejMedlemTilBog(int id, ResultatMapper rm) {
     Medlem medlem = getMedlemById(id);
     konkurrencesvoemmere.add(medlem);
+    rm.tilfoejMedlemTilKonkurrencesvoemmer(medlem);
     }
 
     @Override
