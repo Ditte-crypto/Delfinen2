@@ -64,7 +64,7 @@ public class MainController {
         mainView = new MainView();
         switch (menuValg) {
             case 1:
-                ArrayList<Object> medlemsData = formandView.inputMedlemsData();
+                ArrayList<Object> medlemsData= formandView.inputMedlemsData();
                 formand.lavNytMedlem(medlemsData, medlemsBog);
                 break;
             case 2:
