@@ -21,7 +21,7 @@ public class MainController {
                 break;
             case "kasser" : kasserRun(mainView, menuValg);
                 break;
-            case "traener"://traenerRun();
+            case "traener": traenerRun(menuValg, mainView);
                 break;
             default:
         }
@@ -84,16 +84,16 @@ public class MainController {
                 mainView.getInfo();
         }
     }
-    public void traenerRun() {
+    public void traenerRun(int menuValg, MainView mainView) {
         TraenerView traenerView = new TraenerView();
         ResultatMapper rm = new ResultatMapper();
         ResultatBog rb = new ResultatBog();
-        int menuValg = traenerView.traenerMenu();
+        menuValg = traenerView.traenerMenu();
         switch (menuValg) {
             case 1:
                 int id = traenerView.lavNyKonkurrencesvoemmer();
                 //tilføj til resultatbog og db
-                rb.tilfoejMedlemTilBog(id, rm);
+                rb.tilfoejMedlemTilBog(id);
                 break;
             case 2: //viser svømmere på konkurrencehold
                 traenerView.visKonkurrencesvoemmere(rb);

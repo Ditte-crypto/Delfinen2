@@ -1,6 +1,7 @@
 package Mapper;
 
 import Model.Medlem;
+import Model.Resultat;
 import Util.DBConnector;
 
 import java.sql.Connection;
@@ -11,14 +12,18 @@ import java.util.ArrayList;
 
 public class ResultatMapper {
 
-    public void tilfoejMedlemTilKonkurrencesvoemmer(Medlem medlem){
+    public void tilfoejMedlemTilResultat(Resultat resultat, Medlem medlem){
         String sqlQuery = "";
         Connection connection = DBConnector.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
 
-            sqlQuery = "insert into konkurrencesvoemmer(MedlemsID) values ('"
-                    + medlem.getId() + ");";
+            sqlQuery = "insert into resultat(MedlemsID, Staevne, tid, distance, Disciplin) values ('"
+                    + medlem.getId() + "',"
+                    + resultat.getStaevne() + ","
+                    + resultat.getTid() + ","
+                    + resultat.getDistance() + ");";
+                    + resultat.getDisciplin() + ");";
             statement.executeUpdate(sqlQuery,Statement.RETURN_GENERATED_KEYS);
             ResultSet resultSet = statement.getGeneratedKeys();
             resultSet.next();
@@ -29,14 +34,16 @@ public class ResultatMapper {
 
     }
 
-    public ArrayList<Medlem> getAllKonkurrencesvoemmere(){
+    public ArrayList<>
+
+    public ArrayList<Medlem> getAllKonkurencesvoemmere(){
         ArrayList<Medlem> konkurrencesvoemmer = new ArrayList<>();
         Medlem retMedlem = null;
         String sqlQuery = "";
         Connection connection = DBConnector.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
-            sqlQuery ="select * from konkurrencesvoemmer";
+            sqlQuery ="select * from ";
             ResultSet resultSet = statement.executeQuery(sqlQuery);
             //bearbejdning af resultset:
             while(resultSet.next()) {
