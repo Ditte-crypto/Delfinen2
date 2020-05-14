@@ -84,16 +84,16 @@ public class MainController {
                 mainView.getInfo();
         }
     }
-    public void traenerRun(int menuValg, MainView mainView) {
+    public void traenerRun(int menuValg, MainView mainView, ResultatBog resultatBog) {
+        Traener traener = new Traener();
         TraenerView traenerView = new TraenerView();
         ResultatMapper rm = new ResultatMapper();
         ResultatBog rb = new ResultatBog();
         menuValg = traenerView.traenerMenu();
         switch (menuValg) {
             case 1:
-                int id = traenerView.lavNyKonkurrencesvoemmer();
-                //tilføj til resultatbog og db
-                rb.tilfoejMedlemTilBog(id);
+                ArrayList<Object> medlemsData = traenerView.inputMedlemsData();
+                traener.lavNytMedlem(medlemsData, resultatBog);
                 break;
             case 2: //viser svømmere på konkurrencehold
                 traenerView.visKonkurrencesvoemmere(rb);

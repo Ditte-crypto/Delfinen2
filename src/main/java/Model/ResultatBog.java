@@ -4,44 +4,41 @@ import Mapper.ResultatMapper;
 
 import java.util.ArrayList;
 
-public class ResultatBog extends Bog{
+public class ResultatBog{
 
-    ArrayList<Medlem> konkurrencesvoemmere;
     ResultatMapper resultatMapper;
-    MedlemsBog medlemsBog;
-    ArrayList<Medlem> medlemmer;
+    ResultatBog resultatBog;
+    ArrayList<Resultat> resultater;
 
     public ResultatBog(){
-        konkurrencesvoemmere = new ArrayList<Medlem>();
         resultatMapper = new ResultatMapper();
-        konkurrencesvoemmere = resultatMapper.getAllKonkurrencesvoemmere();
-        medlemsBog = new MedlemsBog();
-        medlemmer = medlemsBog.getMedlemmer();
-    }
-    @Override
-    public ArrayList<Medlem> getMedlemmer() {
-        return konkurrencesvoemmere;
+        resultatBog = new ResultatBog();
+        resultater = resultatMapper.getAllResultater();
     }
 
-    @Override
-    public void tilfoejMedlemTilBog(int id) {
-        Medlem medlem = getMedlemById(id);
-        konkurrencesvoemmere.add(medlem);
-        resultatMapper.tilfoejMedlemTilKonkurrencesvoemmer(medlem);
+    public ArrayList<Resultat> getResultater() {
+        return resultater;
     }
 
-    @Override
-    public void sletMedlemFraBog(int id) throws MedlemNotFoundException {
-        Medlem medlem = getMedlemById(id);
-        konkurrencesvoemmere.remove(medlem);
+
+    public void tilfoejResultatTilBog(Resultat resultat) {
+        //Medlem medlem = getMedlemById(id);
+        resultater.add(resultat);
+        resultatMapper.tilfoejMedlemTilResultat(resultat);
     }
 
-    @Override
-    public Medlem getMedlemById(int id) {
-        Medlem retMedlem = null;
-        for (Medlem m: medlemmer){
-            if(id == m.getId()){
-                retMedlem = m;
+
+    public void sletResultatFraBog(int id) throws ResultatNotFoundException {
+        Resultat resultat = getResultatById(id);
+        resultater.remove(resultat);
+    }
+
+
+    public Resultat getResultatById(int id) {
+        Resultat retResultat = null;
+        for (Resultat r: resultater){
+            if(id == r.getResultatid()){
+                retResultat = r;
             }
         }
         return retMedlem;
