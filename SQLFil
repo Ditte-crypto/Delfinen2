@@ -1,29 +1,38 @@
 CREATE DATABASE IF NOT exists `delfin`;
+drop table resultat;
+drop table if exists konkurrencesvoemmer;
 
-drop table if exists medlemmer;
+
 create table medlemmer (
 MedlemsID int not null auto_increment,
 Navn varchar(255) default null,
 Aargang int not null,
 Betalt tinyint,
 Aktiv tinyint,
+Deleted boolean,
 primary key(MedlemsID)
 )engine=InnoDB default charset=utf8;
 
-drop table if exists konkurrencsvoemmer;
 create table konkurrencesvoemmer (
-MedlemsID int not null,
+MedlemsID int not null auto_increment,
 primary key (MedlemsID)
 )engine=InnoDB default charset=utf8;
 
 drop table if exists resultat;
+
 create table resultat(
 MedlemsID int not null,
-resultatid int not null,
+resultatid int not null auto_increment,
 Staevne varchar (255) default null,
 tid int not null,
 distance ENUM ('50', '100', '200', '400', '800', '1500') default null,
-Disciplin ENUM ('butterfly', 'crawl', 'rygcrawl', 'brystsvømning') default null,
-foreign key (MedlemsId) references konkurrencesvoemmer(medlemsid),
+Disciplin ENUM ('BUTTERFLY', 'CRAWL', 'RYGCRAWL', 'BRYSTSVOEMNING') default null,
+foreign key (MedlemsId) references medlemmer(medlemsid),
 primary key (resultatid)
 )engine=InnoDB default charset=utf8;
+
+
+Insert into resultat(MedlemsID, Staevne, tid, distance, Disciplin)
+Values(1, 'Stævnet!', 30, '50', 'butterfly');
+
+Select m.Navn, r.tid FROM medlemmer m, resultat r WHERE m.MedlemsID = r.MedlemsID
