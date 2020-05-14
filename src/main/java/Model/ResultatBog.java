@@ -8,11 +8,15 @@ public class ResultatBog extends Bog{
 
     ArrayList<Medlem> konkurrencesvoemmere;
     ResultatMapper resultatMapper;
+    MedlemsBog medlemsBog;
+    ArrayList<Medlem> medlemmer;
 
     public ResultatBog(){
         konkurrencesvoemmere = new ArrayList<Medlem>();
         resultatMapper = new ResultatMapper();
         konkurrencesvoemmere = resultatMapper.getAllKonkurrencesvoemmere();
+        medlemsBog = new MedlemsBog();
+        medlemmer = medlemsBog.getMedlemmer();
     }
     @Override
     public ArrayList<Medlem> getMedlemmer() {
@@ -21,13 +25,9 @@ public class ResultatBog extends Bog{
 
     @Override
     public void tilfoejMedlemTilBog(int id) {
-
-    }
-
-    public void tilfoejMedlemTilBog(int id, ResultatMapper rm) {
-    Medlem medlem = getMedlemById(id);
-    konkurrencesvoemmere.add(medlem);
-    rm.tilfoejMedlemTilKonkurrencesvoemmer(medlem);
+        Medlem medlem = getMedlemById(id);
+        konkurrencesvoemmere.add(medlem);
+        resultatMapper.tilfoejMedlemTilKonkurrencesvoemmer(medlem);
     }
 
     @Override
@@ -39,13 +39,14 @@ public class ResultatBog extends Bog{
     @Override
     public Medlem getMedlemById(int id) {
         Medlem retMedlem = null;
-        for (Medlem m: konkurrencesvoemmere){
+        for (Medlem m: medlemmer){
             if(id == m.getId()){
                 retMedlem = m;
             }
         }
         return retMedlem;
     }
+
     /*
     får medlemmer fra databasen som er registreret som konkurrencesvømmere
     vi har også en metode, der registrerer et medlem som konkurrencevømmer

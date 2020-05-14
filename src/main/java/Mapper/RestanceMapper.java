@@ -24,11 +24,15 @@ public class RestanceMapper {
             while(resultSet.next()) {
                 int Id = resultSet.getInt("MedlemsID");
                 String Navn = resultSet.getString("Navn");
+                int Aargang = resultSet.getInt("Aargang");
                 Boolean Betalt = resultSet.getBoolean("Betalt");
+                Boolean Aktiv = resultSet.getBoolean("Aktiv");
                 retRestance = new Medlem();
                 retRestance.setId(Id);
                 retRestance.setNavn(Navn);
+                retRestance.setAargang(Aargang);
                 retRestance.setBetalt(Betalt);
+                retRestance.setAktiv(Aktiv);
                 restance.add(retRestance);
                 //Printer resultaterne
                 //System.out.format("%s, %s, %s, %s, %s", Id, );
