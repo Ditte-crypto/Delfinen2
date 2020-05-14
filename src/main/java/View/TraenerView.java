@@ -12,13 +12,13 @@ public class TraenerView {
 
         int retInt = 0;
         Scanner in = new Scanner(System.in);
-        System.out.println("Velkommen Træner!" +
-                "[4] : for at vise bedste svømmetider" +
-                "[5] : tilføj stævneresultater" +
-                "[3] : tilføj træningsresultater" +
-                "[1] : tilføj svømmer til konkurrencehold"+
-                "[2] : vis svømmere på konkurrencehold"+
-                "[99] : forlad programmet");
+        System.out.println("Velkommen Træner!\n" +
+                "[1] : tilføj svømmer til konkurrencehold\n"+
+                "[2] : vis svømmere på konkurrencehold\n"+
+                "[3] : tilføj træningsresultater\n" +
+                "[4] : for at vise bedste svømmetider\n" +
+                "[5] : tilføj stævneresultater\n" +
+                "[99] : forlad programmet\n");
         retInt = in.nextInt();
         return retInt;
     }
