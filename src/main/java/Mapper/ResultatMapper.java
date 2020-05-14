@@ -12,7 +12,8 @@ import java.util.ArrayList;
 
 public class ResultatMapper {
 
-    public void tilfoejMedlemTilResultat(Resultat resultat, Medlem medlem){
+    public void tilfoejMedlemTilResultat(Resultat resultat){
+
         String sqlQuery = "";
         Connection connection = DBConnector.getInstance().getConnection();
         try {
@@ -22,7 +23,7 @@ public class ResultatMapper {
                     + medlem.getId() + "',"
                     + resultat.getStaevne() + ","
                     + resultat.getTid() + ","
-                    + resultat.getDistance() + ");";
+                    + resultat.getDistance() + ","
                     + resultat.getDisciplin() + ");";
             statement.executeUpdate(sqlQuery,Statement.RETURN_GENERATED_KEYS);
             ResultSet resultSet = statement.getGeneratedKeys();
@@ -34,7 +35,7 @@ public class ResultatMapper {
 
     }
 
-    public ArrayList<>
+    //public ArrayList<>
 
     public ArrayList<Medlem> getAllKonkurencesvoemmere(){
         ArrayList<Medlem> konkurrencesvoemmer = new ArrayList<>();

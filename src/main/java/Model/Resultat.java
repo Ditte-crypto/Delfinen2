@@ -20,12 +20,59 @@ int tid;
 Distance distance;
 Disciplin disciplin;
 
-    public Resultat(Medlem medlem, int resultatid, String staevne, int tid, Distance distance, Disciplin disciplin) {
+    public Resultat(Medlem medlem, String staevne, int tid, Distance distance, Disciplin disciplin) {
         this.medlem = medlem;
-        this.resultatid = resultatid;
         this.staevne = staevne;
         this.tid = tid;
         this.distance = distance;
+        this.disciplin = disciplin;
+    }
+
+    public int getResultatid() {
+        return resultatid;
+    }
+
+    public void setResultatid(int resultatid) {
+        this.resultatid = resultatid;
+    }
+
+    public Medlem getMedlem() {
+        return medlem;
+    }
+
+    public void setMedlem(Medlem medlem) {
+        this.medlem = medlem;
+    }
+
+    public String getStaevne() {
+        return staevne;
+    }
+
+    public void setStaevne(String staevne) {
+        this.staevne = staevne;
+    }
+
+    public int getTid() {
+        return tid;
+    }
+
+    public void setTid(int tid) {
+        this.tid = tid;
+    }
+
+    public Distance getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Distance distance) {
+        this.distance = distance;
+    }
+
+    public Disciplin getDisciplin() {
+        return disciplin;
+    }
+
+    public void setDisciplin(Disciplin disciplin) {
         this.disciplin = disciplin;
     }
 }
