@@ -28,6 +28,29 @@ Disciplin disciplin;
         this.disciplin = disciplin;
     }
 
+    public Resultat(){
+
+    }
+
+    @Override
+    public String toString() {
+        return "Resultat{" +
+                "medlem=" + medlem +
+                ", resultatid=" + resultatid +
+                ", staevne='" + staevne + '\'' +
+                ", tid=" + tid +
+                ", distance=" + distance +
+                ", disciplin=" + disciplin +
+                '}';
+    }
+
+    public int getMedlemsIDFromResultat(){
+        int retInt = 0;
+        Medlem medlem = getMedlem();
+        retInt = medlem.getId();
+        return retInt;
+    }
+
     public int getResultatid() {
         return resultatid;
     }

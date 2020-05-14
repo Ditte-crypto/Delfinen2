@@ -1,4 +1,3 @@
 package Model;
 
-public enum Disciplin {BUTTERFLY,CRAWL,RYGCRAWL,BRYSTSVOEMNING
-}
+public enum Disciplin {BUTTERFLY, CRAWL, RYGCRAWL, BRYSTSVOEMNING}

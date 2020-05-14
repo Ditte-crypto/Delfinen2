@@ -15,13 +15,14 @@ public class MainController {
         MainView mainView = new MainView();
         User loggedInUser = mainView.getInfo();
         MedlemsBog medlemsBog = new MedlemsBog();
+        ResultatBog resultatBog = new ResultatBog();
         int menuValg = 0;
         switch(loggedInUser.getRole()){
             case "formand":formandsRun(menuValg, medlemsBog, mainView);
                 break;
             case "kasser" : kasserRun(mainView, menuValg);
                 break;
-            case "traener": traenerRun(menuValg, mainView);
+            case "traener": traenerRun(menuValg, mainView, resultatBog);
                 break;
             default:
         }
@@ -88,15 +89,15 @@ public class MainController {
         Traener traener = new Traener();
         TraenerView traenerView = new TraenerView();
         ResultatMapper rm = new ResultatMapper();
-        ResultatBog rb = new ResultatBog();
         menuValg = traenerView.traenerMenu();
         switch (menuValg) {
             case 1:
-                ArrayList<Object> medlemsData = traenerView.inputMedlemsData();
+                ArrayList<Object> medlemsData = traenerView.inputResultatsData();
                 traener.lavNytMedlem(medlemsData, resultatBog);
                 break;
             case 2: //viser svømmere på konkurrencehold
-                traenerView.visKonkurrencesvoemmere(rb);
+                traenerView.visResultater(resultatBog);
+                traenerView.traenerMenu();
         }
     }
 }

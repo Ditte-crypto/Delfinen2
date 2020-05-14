@@ -7,12 +7,10 @@ import java.util.ArrayList;
 public class ResultatBog{
 
     ResultatMapper resultatMapper;
-    ResultatBog resultatBog;
     ArrayList<Resultat> resultater;
 
     public ResultatBog(){
         resultatMapper = new ResultatMapper();
-        resultatBog = new ResultatBog();
         resultater = resultatMapper.getAllResultater();
     }
 
@@ -24,7 +22,7 @@ public class ResultatBog{
     public void tilfoejResultatTilBog(Resultat resultat) {
         //Medlem medlem = getMedlemById(id);
         resultater.add(resultat);
-        resultatMapper.tilfoejMedlemTilResultat(resultat);
+        resultatMapper.tilfoejResultat(resultat);
     }
 
 
@@ -41,7 +39,7 @@ public class ResultatBog{
                 retResultat = r;
             }
         }
-        return retMedlem;
+        return retResultat;
     }
 
     /*

@@ -1,6 +1,7 @@
 package View;
 
 import Model.Medlem;
+import Model.Resultat;
 import Model.ResultatBog;
 
 import java.util.ArrayList;
@@ -49,13 +50,13 @@ public class TraenerView {
 
          */
     }
-    public void visKonkurrencesvoemmere(ResultatBog resultatBog){
-        ArrayList<Medlem> svoemmere = resultatBog.getMedlemmer();
-        for (Medlem m : svoemmere){
-            System.out.println(m);
+    public void visResultater(ResultatBog resultatBog){
+        ArrayList<Resultat> resultater = resultatBog.getResultater();
+        for (Resultat r : resultater){
+            System.out.println(r);
         }
     }
-    public AtomicReference<ArrayList<Object>> inputResultatsData(){
+    public ArrayList<Object> inputResultatsData(){
         ArrayList<Object> retList = new ArrayList<Object>();
         Scanner in = new Scanner(System.in);
 
@@ -67,10 +68,12 @@ public class TraenerView {
         System.out.println("Stævne: ");
         String staevne = in.nextLine();
         retList.add(staevne);
+        in.nextLine();
 
         System.out.println("Hvad er tiden? ");
         int tid = in.nextInt();
         retList.add(tid);
+        in.nextLine();
 
         System.out.println("Hvad er distancen?");
         String distance = in.nextLine();
