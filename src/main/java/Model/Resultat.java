@@ -20,9 +20,8 @@ int tid;
 Distance distance;
 Disciplin disciplin;
 
-    public Resultat(Medlem medlem, int resultatid, String staevne, int tid, Distance distance, Disciplin disciplin) {
+    public Resultat(Medlem medlem, String staevne, int tid, Distance distance, Disciplin disciplin) {
         this.medlem = medlem;
-        this.resultatid = resultatid;
         this.staevne = staevne;
         this.tid = tid;
         this.distance = distance;
